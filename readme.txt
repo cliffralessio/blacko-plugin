@@ -8,48 +8,10 @@ License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
 Some customised blocks to simplify page construction
 
-== Description ==
+# Custom Gutenberg Blocks
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+Welcome to the repository for my custom Gutenberg blocks! This project aims to enhance the capabilities of the Gutenberg editor and Full Site Editing (FSE) by providing a set of versatile and easy-to-use custom blocks.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+## Overview
 
-== Installation ==
-
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-1. Upload the plugin files to the `/wp-content/plugins/blacko-plugin` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
-
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
-
-== Changelog ==
-
-= 0.1.0 =
-* Release
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+This project includes a collection of custom blocks designed to help you create any layout within the Gutenberg editor and Full Site Editing environment. These blocks are built to integrate seamlessly with Gutenberg, offering additional functionality and flexibility for building rich, dynamic content.
