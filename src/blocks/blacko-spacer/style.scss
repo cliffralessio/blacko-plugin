@@ -1,0 +1,19 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-blackoweb-blackoweb-spacer {
+
+	height: var(--height-desktop, 120px);
+
+	@media (max-width: 1024px) {
+		height: var(--height-tablet, 60px);
+	}
+
+	@media (max-width: 768px) {
+		height: var(--height-mobile, 30px);
+	}
+}
