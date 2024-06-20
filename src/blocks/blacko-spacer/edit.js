@@ -44,7 +44,7 @@ export default function Edit(props) {
     return (
         <>
             <InspectorControls>
-                <PanelBody title={__('Responsive Settings', 'blackoweb')}>
+                <PanelBody title={__('Responsive Settings', 'virginia')}>
                     <div style={{ marginBottom: "15px" }}>
                         <ButtonGroup>
                             <Button
@@ -68,7 +68,7 @@ export default function Edit(props) {
                         </ButtonGroup>
                     </div>
                     <RangeControl
-                        label={__('Height', 'blackoweb')}
+                        label={__('Height', 'virginia')}
                         value={heightValue}
                         onChange={(value) => setAttributes({ [`height${selectedDevice.charAt(0).toUpperCase() + selectedDevice.slice(1)}`]: value })}
                         min={0}

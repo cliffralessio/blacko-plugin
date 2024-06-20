@@ -12,7 +12,7 @@
  * Text Domain:       blacko-plugin
  * Domain Path:       blacko-web
  *
- * @package Blackoweb
+ * @package virginia
  */
 
 if (!defined('ABSPATH')) {
@@ -26,11 +26,11 @@ if (!defined('ABSPATH')) {
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function blackoweb_blacko_plugin_block_init()
+function virginia_blacko_plugin_block_init()
 {
 	register_block_type(__DIR__ . '/build/blocks/blacko-spacer');
 }
-add_action('init', 'blackoweb_blacko_plugin_block_init');
+add_action('init', 'virginia_blacko_plugin_block_init');
 
 
 /**
