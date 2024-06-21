@@ -13,7 +13,7 @@ import { __ } from '@wordpress/i18n';
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ButtonGroup, Button, RangeControl, Icon } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { desktop, tablet, mobile } from '@wordpress/icons';
 
 /**
@@ -34,12 +34,44 @@ import './editor.scss';
  */
 export default function Edit(props) {
     const { attributes, setAttributes } = props;
-	
     const [selectedDevice, setSelectedDevice] = useState('desktop');
-
     const blockProps = useBlockProps();
-	
     const heightValue = attributes[`height${selectedDevice.charAt(0).toUpperCase() + selectedDevice.slice(1)}`] || 0;
+
+    useEffect(() => {
+        // Function to update classes in the iframe
+        const updateIframeClasses = () => {
+            const iframe = document.querySelector('iframe[name="editor-canvas"]');
+            if (iframe) {
+                if (selectedDevice === 'desktop') {
+                    iframe.style.border = "0px";
+                    iframe.style.margin = "0 auto";
+                    iframe.style.transition = "all 0.3s ease 0s";
+                    iframe.style.width = "100%";
+                    iframe.style.height = "100%";
+                } else if (selectedDevice === 'tablet') {
+                    iframe.style.border = "1px solid rgb(221, 221, 221)";
+                    iframe.style.margin = "72px auto";
+                    iframe.style.transition = "all 0.3s ease 0s";
+                    iframe.style.width = "780px";
+                    iframe.style.height = "1024px";
+                    iframe.style.borderRadius = "2px";
+                    iframe.style.overflowY = "auto";
+                } else if (selectedDevice === 'mobile') {
+                    iframe.style.border = "1px solid rgb(221, 221, 221)";
+                    iframe.style.margin = "72px auto";
+                    iframe.style.transition = "all 0.3s ease 0s";
+                    iframe.style.width = "360px";
+                    iframe.style.height = "768px";
+                    iframe.style.borderRadius = "2px";
+                    iframe.style.overflowY = "auto";
+                }
+            }
+        };
+
+        updateIframeClasses();
+
+    }, [selectedDevice]);
 
     return (
         <>
@@ -75,9 +107,8 @@ export default function Edit(props) {
                         max={250}
                     />
                 </PanelBody>
-            </InspectorControls >
-            <div {...blockProps} style={{ height: `${heightValue}px`}} ></div>
+            </InspectorControls>
+            <div {...blockProps} style={{ height: `${heightValue}px` }}></div>
         </>
     );
-
 }

@@ -1,4 +1,4 @@
-=== Blacko Web editor ===
+=== virginia Web editor ===
 Contributors:      Alessio
 Tags:              block
 Tested up to:      6.1

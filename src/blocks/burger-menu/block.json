@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "virginia/burger-menu",
+	"version": "0.1.0",
+	"title": "Burger menu",
+	"category": "widgets",
+	"icon": "menu",
+	"description": "Burger menu",
+	"example": {},
+	"attributes": {
+		"classMode": {
+			"type": "string",
+			"default": "squeeze"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"alignWide": true,
+		"html": false
+	},
+	"textdomain": "virginia",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
