@@ -11,11 +11,11 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { useBlockProps, InspectorControls, ColorPalette } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, RangeControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 /**
- * Lets webpack process  CSS, SASS or SCSS files referenced in JavaScript files.
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
@@ -39,8 +39,19 @@ import 'hamburgers/dist/hamburgers.css';
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-    const { classMode } = attributes;
+    const { classMode, paddingX, paddingY, widthBurger, heightBurger, colorBurger } = attributes;
     const [isActive, setIsActive] = useState(false);
+    const styleAttr = {
+        paddingLeft: `${paddingX}px`,
+        paddingRight: `${paddingX}px`,
+        paddingTop: `${paddingY}px`,
+        paddingBottom: `${paddingY}px`
+    };
+    const burgerSettings = {
+        '--width-burger': `${widthBurger}px`,
+        '--height-burger': `${heightBurger}px`,
+        '--color-burger': `${colorBurger}`
+    }
 
     const blockProps = useBlockProps();
 
@@ -91,14 +102,59 @@ export default function Edit({ attributes, setAttributes }) {
                         }}
                     />
                 </PanelBody>
+                <PanelBody title={__('Burger button style', 'virginia')}>
+                    <RangeControl
+                        help="Select padding-x."
+                        initialPosition={15}
+                        value={paddingX}
+                        label="Padding-x"
+                        max={40}
+                        min={0}
+                        onChange={(value) => { setAttributes({ paddingX: value }) }}
+                    />
+                    <RangeControl
+                        help="Select padding-Y."
+                        initialPosition={15}
+                        value={paddingY}
+                        label="Padding-y"
+                        max={40}
+                        min={0}
+                        onChange={(value) => { setAttributes({ paddingY: value }) }}
+                    />
+                    <RangeControl
+                        help="Select Width."
+                        initialPosition={40}
+                        value={widthBurger}
+                        label="Width Burger"
+                        max={70}
+                        min={10}
+                        onChange={(value) => { setAttributes({ widthBurger: value }) }}
+                    />
+                    <RangeControl
+                        help="Select Height."
+                        initialPosition={5}
+                        value={heightBurger}
+                        label="Height Burger"
+                        max={10}
+                        min={3}
+                        onChange={(value) => { setAttributes({ heightBurger: value }) }}
+                    />
+                    <ColorPalette
+                        label="Color Burger"
+                        value={colorBurger}
+                        onChange={(color) => setAttributes({ colorBurger: color })}
+                    />
+                </PanelBody>
             </InspectorControls>
             <div {...blockProps}>
-                <button type="button"
+                <button
+                    type="button"
                     className={`hamburger hamburger--${classMode} ${isActive ? 'is-active' : ''}`}
+                    style={styleAttr}
                     onClick={() => setIsActive(!isActive)}
                 >
                     <span className="hamburger-box">
-                        <span className="hamburger-inner"></span>
+                        <span className="hamburger-inner" style={burgerSettings}></span>
                     </span>
                 </button>
             </div>

@@ -29,13 +29,26 @@ import 'hamburgers/dist/hamburgers.css';
  * @return {Element} Element to render.
  */
 export default function save({ attributes }) {
-    const { classMode } = attributes;
+    const { classMode, paddingX, paddingY, widthBurger, heightBurger, colorBurger } = attributes;
+
+    // Definisci l'attributo styleAttr
+    const styleAttr = { paddingLeft: `${paddingX}px`, paddingRight: `${paddingX}px`, paddingTop: `${paddingY}px`, paddingBottom: `${paddingY}px` };
+    const burgerSettings = {
+        '--width-burger': `${widthBurger}px`,
+        '--height-burger': `${heightBurger}px`,
+        '--color-burger': `${colorBurger}`
+    }
     const blockProps = useBlockProps.save();
 
     return (
-        <button {...blockProps} type="button" className={`hamburger hamburger--${classMode}`}>
+        <button
+            {...blockProps}
+            type="button"
+            className={`hamburger hamburger--${classMode}`}
+            style={styleAttr}
+        >
             <span className="hamburger-box">
-                <span className="hamburger-inner"></span>
+                <span className="hamburger-inner" style={burgerSettings} ></span>
             </span>
         </button>
     );

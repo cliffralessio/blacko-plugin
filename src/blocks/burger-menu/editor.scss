@@ -5,3 +5,12 @@
  */
 
  @import "hamburgers/dist/hamburgers";
+
+ .hamburger-inner,
+ .hamburger-inner::before,
+ .hamburger-inner::after {
+    width: var(--width-burger)!important;
+    height: var(--height-burger)!important;
+    background-color: var(--color-burger)!important;
+}
+

@@ -12,6 +12,26 @@
 		"classMode": {
 			"type": "string",
 			"default": "squeeze"
+		},
+		"paddingX": {
+			"type": "number",
+			"default": "15"
+		},
+		"paddingY": {
+			"type": "number",
+			"default": "15"
+		},
+		"widthBurger": {
+			"type": "number",
+			"default": "40"
+		},
+		"heightBurger": {
+			"type": "number",
+			"default": "4"
+		},
+		"colorBurger": {
+			"type": "string",
+			"default": "#000"
 		}
 	},
 	"supports": {
