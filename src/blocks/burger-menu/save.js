@@ -13,10 +13,6 @@ import { __ } from '@wordpress/i18n';
  */
 import { useBlockProps } from '@wordpress/block-editor';
 
-/**
- * Import hamburgers CSS.
- */
-import 'hamburgers/dist/hamburgers.css';
 
 /**
  * The save function defines the way in which the different attributes should be combined
@@ -29,27 +25,56 @@ import 'hamburgers/dist/hamburgers.css';
  * @return {Element} Element to render.
  */
 export default function save({ attributes }) {
-    const { classMode, paddingX, paddingY, widthBurger, heightBurger, colorBurger } = attributes;
+    const {
+        classMode,
+        paddingX,
+        paddingY,
+        layerWidth,
+        layerHeight,
+        layerSpacing,
+        layerColor,
+        borderRadiusBurger,
+        hoverOpacity,
+        activeLayerColor,
+        activeHoverOpacity,
+        useHoverFilter,
+        hoverFilter,
+        activeHoverFilter,
+        zIndex
+    } = attributes;
 
-    // Definisci l'attributo styleAttr
-    const styleAttr = { paddingLeft: `${paddingX}px`, paddingRight: `${paddingX}px`, paddingTop: `${paddingY}px`, paddingBottom: `${paddingY}px` };
+    // Define CSS custom properties directly in the inline style for the save function
     const burgerSettings = {
-        '--width-burger': `${widthBurger}px`,
-        '--height-burger': `${heightBurger}px`,
-        '--color-burger': `${colorBurger}`
-    }
+        '--padding-left': `${paddingX}px`,
+        '--padding-right': `${paddingX}px`,
+        '--padding-top': `${paddingY}px`,
+        '--padding-bottom': `${paddingY}px`,
+        '--width-burger': `${layerWidth}px`,
+        '--height-burger': `${layerHeight}px`,
+        '--spacing-burger': `${layerSpacing}px`,
+        '--layer-color': layerColor,  
+        '--border-radius-burger': `${borderRadiusBurger}px`,
+        '--hover-opacity': `${hoverOpacity}`,
+        '--active-layer-color': activeLayerColor || layerColor, 
+        '--active-hover-opacity': `${activeHoverOpacity}`,  
+        '--hover-filter': useHoverFilter ? `${hoverFilter}` : 'none',  
+        '--active-hover-filter': useHoverFilter ? `${activeHoverFilter}` : 'none',
+        '--z-index-burger': zIndex
+    };
+
     const blockProps = useBlockProps.save();
 
     return (
-        <button
-            {...blockProps}
-            type="button"
-            className={`hamburger hamburger--${classMode}`}
-            style={styleAttr}
-        >
-            <span className="hamburger-box">
-                <span className="hamburger-inner" style={burgerSettings} ></span>
-            </span>
-        </button>
+        <div {...blockProps}>
+            <button
+                type="button"
+                className={`hamburger hamburger--${classMode}`}
+                style={burgerSettings}
+            >
+                <span className="hamburger-box">
+                    <span className="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
     );
 }

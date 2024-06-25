@@ -3,11 +3,12 @@
 	"apiVersion": 3,
 	"name": "virginia/burger-menu",
 	"version": "0.1.0",
-	"title": "Burger menu",
-	"category": "widgets",
+	"title": "Burger Menu",
+	"category": "design",
 	"icon": "menu",
-	"description": "Burger menu",
+	"description": "A customizable hamburger menu for your site.",
 	"example": {},
+	"parent": [ "core/navigation" ],
 	"attributes": {
 		"classMode": {
 			"type": "string",
@@ -15,23 +16,59 @@
 		},
 		"paddingX": {
 			"type": "number",
-			"default": "15"
+			"default": 15
 		},
 		"paddingY": {
 			"type": "number",
-			"default": "15"
+			"default": 15
 		},
-		"widthBurger": {
+		"layerWidth": {
 			"type": "number",
-			"default": "40"
+			"default": 40
 		},
-		"heightBurger": {
+		"layerHeight": {
 			"type": "number",
-			"default": "4"
+			"default": 4
 		},
-		"colorBurger": {
+		"layerSpacing": {
+			"type": "number",
+			"default": 6
+		},
+		"layerColor": {
 			"type": "string",
 			"default": "#000"
+		},
+		"borderRadiusBurger": {
+			"type": "number",
+			"default": 4
+		},
+		"hoverOpacity": {
+			"type": "number",
+			"default": 1
+		},
+		"activeLayerColor": {
+			"type": "string",
+			"default": null
+		},
+		"activeHoverOpacity": {
+			"type": "number",
+			"default": 1
+		},
+		"useHoverFilter": {
+			"type": "boolean",
+			"default": false
+		},
+		"hoverFilter": {
+			"type": "string",
+			"default": ""
+		},
+		"activeHoverFilter": {
+			"type": "string",
+			"default": ""
+		},
+		"zIndex": {
+			"type": "number",
+			"default": 1
 		}
 	},
 	"supports": {

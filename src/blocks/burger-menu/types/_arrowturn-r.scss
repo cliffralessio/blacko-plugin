@@ -1,0 +1,17 @@
+/* Arrow Turn Right */
+
+.hamburger--arrowturn-r.is-active {
+  .hamburger-inner {
+    transform: rotate(-180deg);
+
+    &::before {
+      transform: translate3d(calc(var(--width-burger) * -0.28), calc((var(--height-burger) - var(--spacing-burger)) * -0.5), 0) rotate(-45deg) scale(0.6, 1);
+    }
+
+    &::after {
+      transform: translate3d(calc(var(--width-burger) * -0.28), calc((var(--height-burger) - var(--spacing-burger)) * 0.5), 0) rotate(45deg) scale(0.6, 1);
+    }
+  }
+}
+
+

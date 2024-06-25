@@ -5,20 +5,8 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-@import "hamburgers/dist/hamburgers";
-
+ 
 .hamburger:focus {
-	outline-width: 0 !important;
+	outline-width: 0!important;
 }
-
-.hamburger-box {
-	pointer-events: none;
-}
-
-.hamburger-inner,
-.hamburger-inner::before,
-.hamburger-inner::after {
-	width: var(--width-burger) !important;
-	height: var(--height-burger) !important;
-	background-color: var(--color-burger) !important;
-}
+ @import "hamburgers";

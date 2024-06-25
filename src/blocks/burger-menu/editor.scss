@@ -1,16 +1,6 @@
 /**
  * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
  */
 
- @import "hamburgers/dist/hamburgers";
 
- .hamburger-inner,
- .hamburger-inner::before,
- .hamburger-inner::after {
-    width: var(--width-burger)!important;
-    height: var(--height-burger)!important;
-    background-color: var(--color-burger)!important;
-}
-
+ @import "hamburgers";

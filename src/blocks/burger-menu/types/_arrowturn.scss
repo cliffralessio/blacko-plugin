@@ -1,0 +1,14 @@
+/* Arrow Turn */
+.hamburger--arrowturn.is-active {
+  .hamburger-inner {
+    transform: rotate(-180deg);
+
+    &::before {
+      transform: translate3d(calc(var(--width-burger) * 0.1), 0, 0) rotate(45deg) scale(0.7, 1);
+    }
+
+    &::after {
+      transform: translate3d(calc(var(--width-burger) * 0.1), 0, 0) rotate(-45deg) scale(0.7, 1);
+    }
+  }
+}
