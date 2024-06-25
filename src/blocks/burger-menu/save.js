@@ -13,7 +13,6 @@ import { __ } from '@wordpress/i18n';
  */
 import { useBlockProps } from '@wordpress/block-editor';
 
-
 /**
  * The save function defines the way in which the different attributes should be combined
  * into the final markup, which is then serialized by the block editor into post_content.
@@ -40,7 +39,10 @@ export default function save({ attributes }) {
         useHoverFilter,
         hoverFilter,
         activeHoverFilter,
-        zIndex
+        zIndex,
+        visibilityDesktop,
+        visibilityTablet,
+        visibilityMobile
     } = attributes;
 
     // Define CSS custom properties directly in the inline style for the save function
@@ -52,17 +54,19 @@ export default function save({ attributes }) {
         '--width-burger': `${layerWidth}px`,
         '--height-burger': `${layerHeight}px`,
         '--spacing-burger': `${layerSpacing}px`,
-        '--layer-color': layerColor,  
+        '--layer-color': layerColor,
         '--border-radius-burger': `${borderRadiusBurger}px`,
         '--hover-opacity': `${hoverOpacity}`,
-        '--active-layer-color': activeLayerColor || layerColor, 
-        '--active-hover-opacity': `${activeHoverOpacity}`,  
-        '--hover-filter': useHoverFilter ? `${hoverFilter}` : 'none',  
+        '--active-layer-color': activeLayerColor || layerColor,
+        '--active-hover-opacity': `${activeHoverOpacity}`,
+        '--hover-filter': useHoverFilter ? `${hoverFilter}` : 'none',
         '--active-hover-filter': useHoverFilter ? `${activeHoverFilter}` : 'none',
         '--z-index-burger': zIndex
     };
 
-    const blockProps = useBlockProps.save();
+    const blockProps = useBlockProps.save({
+        className: `${visibilityDesktop ? 'visible-desktop' : ''} ${visibilityTablet ? 'visible-tablet' : ''} ${visibilityMobile ? 'visible-mobile' : ''}`
+    });
 
     return (
         <div {...blockProps}>

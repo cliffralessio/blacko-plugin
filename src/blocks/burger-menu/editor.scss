@@ -1,6 +1,38 @@
 /**
  * The following styles get applied inside the editor only.
  */
+/* Visibility classes */
+.visible-desktop {
+    opacity: 0.2;
+    display: block;
+}
 
+.visible-tablet {
+    opacity: 0.2;
+    display: block;
+}
 
- @import "hamburgers";
+.visible-mobile {
+    opacity: 0.2;
+    display: block;
+}
+
+@media (min-width: 1025px) {
+    .visible-desktop {
+        opacity: 1;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .visible-tablet {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .visible-mobile {
+        opacity: 1;
+    }
+}
+
+@import "hamburgers";

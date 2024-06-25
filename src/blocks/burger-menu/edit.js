@@ -12,8 +12,10 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps, InspectorControls, ColorPalette } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, ToggleControl, TextControl, BaseControl, SelectControl, } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { PanelBody, RangeControl, ToggleControl, TextControl, BaseControl, SelectControl, ButtonGroup, Button, Icon } from '@wordpress/components';
+import { useState, useEffect } from '@wordpress/element';
+import { desktop, tablet, mobile } from '@wordpress/icons';
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -50,10 +52,14 @@ export default function Edit({ attributes, setAttributes }) {
         useHoverFilter,
         hoverFilter,
         activeHoverFilter,
-        zIndex
+        zIndex,
+        visibilityDesktop,
+        visibilityTablet,
+        visibilityMobile
     } = attributes;
 
     const [isActive, setIsActive] = useState(false);
+    const [selectedDevice, setSelectedDevice] = useState('desktop');
 
     const burgerSettings = {
         '--padding-left': `${paddingX}px`,
@@ -74,12 +80,47 @@ export default function Edit({ attributes, setAttributes }) {
     };
 
 
-    const blockProps = useBlockProps();
+    const blockProps = useBlockProps({
+        className: `${visibilityDesktop ? 'visible-desktop' : ''} ${visibilityTablet ? 'visible-tablet' : ''} ${visibilityMobile ? 'visible-mobile' : ''}`
+    });
+    useEffect(() => {
+        // Function to update classes in the iframe
+        const updateIframeClasses = () => {
+            const iframe = document.querySelector('iframe[name="editor-canvas"]');
+            if (iframe) {
+                if (selectedDevice === 'desktop') {
+                    iframe.style.border = "0px";
+                    iframe.style.margin = "0 auto";
+                    iframe.style.transition = "all 0.3s ease 0s";
+                    iframe.style.width = "100%";
+                    iframe.style.height = "100%";
+                } else if (selectedDevice === 'tablet') {
+                    iframe.style.border = "1px solid rgb(221, 221, 221)";
+                    iframe.style.margin = "72px auto";
+                    iframe.style.transition = "all 0.3s ease 0s";
+                    iframe.style.width = "780px";
+                    iframe.style.height = "1024px";
+                    iframe.style.borderRadius = "2px";
+                    iframe.style.overflowY = "auto";
+                } else if (selectedDevice === 'mobile') {
+                    iframe.style.border = "1px solid rgb(221, 221, 221)";
+                    iframe.style.margin = "72px auto";
+                    iframe.style.transition = "all 0.3s ease 0s";
+                    iframe.style.width = "360px";
+                    iframe.style.height = "768px";
+                    iframe.style.borderRadius = "2px";
+                    iframe.style.overflowY = "auto";
+                }
+            }
+        };
 
+        updateIframeClasses();
+
+    }, [selectedDevice]);
     return (
         <>
             <InspectorControls>
-                <PanelBody title={__("Hamburger Settings", "virginia-plugin-plugin")} initialOpen={true}>
+                <PanelBody title={__("Hamburger Settings", "virginia-plugin-plugin")} initialOpen={false}>
                     <SelectControl
                         label={__('Animation Style', 'virginia-plugin-plugin')}
                         value={classMode || 'squeeze'}
@@ -226,7 +267,54 @@ export default function Edit({ attributes, setAttributes }) {
                         </>
                     )}
                 </PanelBody>
-            </InspectorControls>
+                <PanelBody title={__('Responsive control', 'virginia-plugin')} initialOpen={false}>
+                    <div style={{ marginBottom: "15px" }}>
+                        <ButtonGroup>
+                            <Button
+                                variant={selectedDevice === 'desktop' ? 'primary' : 'secondary'}
+                                onClick={() => { setSelectedDevice('desktop') }}
+                            >
+                                <Icon icon={desktop} />
+                            </Button>
+                            <Button
+                                variant={selectedDevice === 'tablet' ? 'primary' : 'secondary'}
+                                onClick={() => { setSelectedDevice('tablet') }}
+                            >
+                                <Icon icon={tablet} />
+                            </Button>
+                            <Button
+                                variant={selectedDevice === 'mobile' ? 'primary' : 'secondary'}
+                                onClick={() => { setSelectedDevice('mobile') }}
+                            >
+                                <Icon icon={mobile} />
+                            </Button>
+                            {selectedDevice === 'desktop' &&
+                                <div style={{ marginTop: "15px" }}>
+                                    <ToggleControl
+                                        label={__('Visible on desktop', 'virginia-plugin')}
+                                        checked={visibilityDesktop}
+                                        onChange={(value) => setAttributes({ visibilityDesktop: value })}
+                                    /></div>}
+
+                            {selectedDevice === 'tablet' &&
+                                <div style={{ marginTop: "15px" }}>
+                                    <ToggleControl
+                                        label={__('Visible on tablet', 'virginia-plugin')}
+                                        checked={visibilityTablet}
+                                        onChange={(value) => setAttributes({ visibilityTablet: value })}
+                                    /></div>}
+                            {selectedDevice === 'mobile' &&
+                                <div style={{ marginTop: "15px" }}>
+                                    <ToggleControl
+                                        label={__('Visible on mobile', 'virginia-plugin')}
+                                        checked={visibilityMobile}
+                                        onChange={(value) => setAttributes({ visibilityMobile: value })}
+                                    /></div>}
+                        </ButtonGroup>
+                    </div>
+                </PanelBody >
+
+            </InspectorControls >
             <div {...blockProps}>
                 <button
                     type="button"

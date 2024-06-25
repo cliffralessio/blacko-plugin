@@ -4,8 +4,6 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 import { registerBlockType } from '@wordpress/blocks';
-import { addFilter } from '@wordpress/hooks';
-
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -39,31 +37,3 @@ registerBlockType(metadata.name, {
      */
     save,
 });
-
-
-/**
- * Make the Mega Menu Block available to Navigation blocks.
- *
- * @since 0.1.0
- *
- * @param {Object} blockSettings The original settings of the block.
- * @param {string} blockName     The name of the block being modified.
- * @return {Object} The modified settings for the Navigation block or the original settings for other blocks.
- */
-const addToNavigation = (blockSettings, blockName) => {
-    if (blockName === 'core/navigation') {
-        return {
-            ...blockSettings,
-            allowedBlocks: [
-                ...(blockSettings.allowedBlocks ?? []),
-                'virginia/burger-menu',
-            ],
-        };
-    }
-    return blockSettings;
-};
-addFilter(
-    'blocks.registerBlockType',
-    'outermost-mega-menu-add-to-navigation',
-    addToNavigation
-);

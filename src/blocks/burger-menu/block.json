@@ -8,7 +8,6 @@
 	"icon": "menu",
 	"description": "A customizable hamburger menu for your site.",
 	"example": {},
-	"parent": [ "core/navigation" ],
 	"attributes": {
 		"classMode": {
 			"type": "string",
@@ -69,6 +68,18 @@
 		"zIndex": {
 			"type": "number",
 			"default": 1
+		},
+		"visibilityDesktop": {
+			"type": "boolean",
+			"default": true
+		},
+		"visibilityTablet": {
+			"type": "boolean",
+			"default": true
+		},
+		"visibilityMobile": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"supports": {
