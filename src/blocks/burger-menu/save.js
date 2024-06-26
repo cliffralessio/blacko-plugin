@@ -42,7 +42,9 @@ export default function save({ attributes }) {
         zIndex,
         visibilityDesktop,
         visibilityTablet,
-        visibilityMobile
+        visibilityMobile,
+        isVisible,
+        textContent
     } = attributes;
 
     // Define CSS custom properties directly in the inline style for the save function
@@ -78,6 +80,16 @@ export default function save({ attributes }) {
                 <span className="hamburger-box">
                     <span className="hamburger-inner"></span>
                 </span>
+                {isVisible && (
+                    <>
+                        <span className="hamburger-label hamburger-label-open">
+                            {textContent}
+                        </span>
+                        <span className="hamburger-label hamburger-label-close label-hidden">
+                            close
+                        </span>
+                    </>
+                )}
             </button>
         </div>
     );

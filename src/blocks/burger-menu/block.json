@@ -80,12 +80,31 @@
 		"visibilityMobile": {
 			"type": "boolean",
 			"default": true
+		},
+		"textContent": {
+			"type": "string",
+			"default": "Menu"
+		},
+		"isVisible": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {
 		"anchor": true,
 		"alignWide": true,
-		"html": false
+		"html": false,
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"textAlign": true
+		},
+		"ariaLabel": true,
+		"color": {
+			"background": false,
+			"text": true,
+			"link": false
+		}
 	},
 	"textdomain": "virginia",
 	"editorScript": "file:./index.js",

@@ -55,11 +55,14 @@ export default function Edit({ attributes, setAttributes }) {
         zIndex,
         visibilityDesktop,
         visibilityTablet,
-        visibilityMobile
+        visibilityMobile,
+        textContent,
+        isVisible
     } = attributes;
 
     const [isActive, setIsActive] = useState(false);
     const [selectedDevice, setSelectedDevice] = useState('desktop');
+    
 
     const burgerSettings = {
         '--padding-left': `${paddingX}px`,
@@ -78,11 +81,26 @@ export default function Edit({ attributes, setAttributes }) {
         '--active-hover-filter': useHoverFilter ? `${activeHoverFilter}` : 'none',
         '--z-index-burger': zIndex
     };
-
+    let className = 'hidden-devices';
+    switch (selectedDevice) {
+        case 'desktop':
+            className = visibilityDesktop ? 'visible-desktop' : 'hidden-devices';
+            break;
+        case 'tablet':
+            className = visibilityTablet ? 'visible-tablet' : 'hidden-devices';
+            break;
+        case 'mobile':
+            className = visibilityMobile ? 'visible-mobile' : 'hidden-devices';
+            break;
+        default:
+            className = 'hidden-devices';
+            break;
+    }
 
     const blockProps = useBlockProps({
-        className: `${visibilityDesktop ? 'visible-desktop' : ''} ${visibilityTablet ? 'visible-tablet' : ''} ${visibilityMobile ? 'visible-mobile' : ''}`
+        className
     });
+
     useEffect(() => {
         // Function to update classes in the iframe
         const updateIframeClasses = () => {
@@ -120,6 +138,20 @@ export default function Edit({ attributes, setAttributes }) {
     return (
         <>
             <InspectorControls>
+                <PanelBody title={__("Text Options", "text-domain")} initialOpen={true}>
+                    <ToggleControl
+                        label={__("Show burger text", "text-domain")}
+                        checked={isVisible}
+                        onChange={() => setAttributes({ isVisible: !isVisible })}
+                    />
+                    {isVisible && (
+                        <TextControl
+                            label={__("Text Content", "text-domain")}
+                            value={textContent}
+                            onChange={(value) => setAttributes({ textContent: value })}
+                        />
+                    )}
+                </PanelBody>
                 <PanelBody title={__("Hamburger Settings", "virginia-plugin-plugin")} initialOpen={false}>
                     <SelectControl
                         label={__('Animation Style', 'virginia-plugin-plugin')}
@@ -325,6 +357,11 @@ export default function Edit({ attributes, setAttributes }) {
                     <span className="hamburger-box">
                         <span className="hamburger-inner"></span>
                     </span>
+                    {isVisible && (
+                        <span className="hamburger-label">
+                            {isActive ? __('Close', 'virginia-plugin') : textContent}
+                        </span>
+                    )}
                 </button>
             </div>
         </>

@@ -2,19 +2,9 @@
  * The following styles get applied inside the editor only.
  */
 /* Visibility classes */
-.visible-desktop {
-    opacity: 0.2;
-    display: block;
-}
 
-.visible-tablet {
-    opacity: 0.2;
-    display: block;
-}
-
-.visible-mobile {
-    opacity: 0.2;
-    display: block;
+.hidden-devices {
+    opacity: 0.1!important;
 }
 
 @media (min-width: 1025px) {

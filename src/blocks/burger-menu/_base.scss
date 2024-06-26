@@ -48,6 +48,7 @@
   height: calc(var(--height-burger) * 3 + var(--spacing-burger) * 2);
   display: inline-block;
   position: relative;
+  vertical-align: middle;
 }
 
 .hamburger-inner {
@@ -81,4 +82,12 @@
   &::after {
     bottom: calc((var(--spacing-burger) + var(--height-burger)) * -1);
   }
+}
+
+.hamburger-label {
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  text-transform: uppercase
 }

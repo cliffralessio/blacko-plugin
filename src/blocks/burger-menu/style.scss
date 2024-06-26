@@ -11,6 +11,12 @@
 }
 
 
+/** Visibility text **/
+
+.label-hidden {
+	display: none!important;
+}
+
 /* Visibility classes */
 .visible-desktop {
     display: none;
